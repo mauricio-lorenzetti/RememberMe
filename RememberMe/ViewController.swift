@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
     
     var geotifications = [Geotification]()
-    var cellHeights = (0..<2).map { _ in C.CellHeight.close }
+    var cellHeights:[CGFloat]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         loadAllGeotifications()
+        cellHeights = (0..<geotifications.count).map { _ in C.CellHeight.close }
     }
     
     private func loadAllGeotifications() {
@@ -62,18 +63,20 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return geotifications.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
+        //TODO: preencher a celula
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+        return cellHeights![indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,12 +85,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         var duration = 0.0
-        if cellHeights[indexPath.row] == C.CellHeight.close { // open cell
-            cellHeights[indexPath.row] = C.CellHeight.open
+        if cellHeights![indexPath.row] == C.CellHeight.close { // open cell
+            cellHeights![indexPath.row] = C.CellHeight.open
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {// close cell
-            cellHeights[indexPath.row] = C.CellHeight.close
+            cellHeights![indexPath.row] = C.CellHeight.close
             cell.unfold(false, animated: true, completion: nil)
             duration = 1.1
         }
@@ -100,7 +103,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if case let cell as FoldingCell = cell {
-            if cellHeights[indexPath.row] == C.CellHeight.close {
+            if cellHeights![indexPath.row] == C.CellHeight.close {
                 cell.unfold(false, animated: false, completion:nil)
             } else {
                 cell.unfold(true, animated: false, completion: nil)
