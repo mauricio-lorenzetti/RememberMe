@@ -14,11 +14,6 @@ class ItemsDB: NSObject {
     static let allObjects = [ Item(iconTitle: "cat") ]
     
     static func getItemByIconTitle(title iconTitle: String) -> Item? {
-        for item in allObjects {
-            if item.iconTitle == iconTitle {
-                return item
-            }
-        }
-        return nil
+        return allObjects.filter{ $0.iconTitle == iconTitle }[0]
     }
 }

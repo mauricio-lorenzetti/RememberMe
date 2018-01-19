@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     
+    var geotifications = [Geotification]()
     var cellHeights = (0..<2).map { _ in C.CellHeight.close }
     
     override func viewDidLoad() {
@@ -33,11 +34,27 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        loadAllGeotifications()
+    }
+    
+    private func loadAllGeotifications() {
+        geotifications = []
+        geotifications.append(createDefaultGeotification())
+    }
+    
+    private func createDefaultGeotification() -> Geotification {
+        return Geotification(
+            coordinate: CLLocationCoordinate2D.init(latitude: -22.812749, longitude: -47.065614),
+            radius: 100.0,
+            identifier: "#0",
+            note: "default",
+            eventType: .onExit,
+            items: [Item.init(iconTitle: "cat")])
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }
