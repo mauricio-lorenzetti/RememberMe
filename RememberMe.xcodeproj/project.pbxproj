@@ -7,14 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222A181C200E7AA200065115 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A181B200E7AA200065115 /* RegionCell.swift */; };
+		222A181E2010C4FC00065115 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A181D2010C4FC00065115 /* Utilities.swift */; };
+		222A18202010C82200065115 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A181F2010C82200065115 /* Geotification.swift */; };
+		222A18222010C95F00065115 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A18212010C95F00065115 /* Item.swift */; };
+		222A18242010CA0400065115 /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A18232010CA0400065115 /* ItemDB.swift */; };
 		2263485B200D29CE00650BFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2263485A200D29CE00650BFE /* AppDelegate.swift */; };
 		2263485D200D29CE00650BFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2263485C200D29CE00650BFE /* ViewController.swift */; };
 		22634860200D29CE00650BFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2263485E200D29CE00650BFE /* Main.storyboard */; };
 		22634862200D29CE00650BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22634861200D29CE00650BFE /* Assets.xcassets */; };
 		22634865200D29CE00650BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22634863200D29CE00650BFE /* LaunchScreen.storyboard */; };
+		44727349905DEAC07F94DDB6 /* Pods_RememberMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0002EF3147476C6F90DA682F /* Pods_RememberMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0002EF3147476C6F90DA682F /* Pods_RememberMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RememberMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		222A181B200E7AA200065115 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
+		222A181D2010C4FC00065115 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		222A181F2010C82200065115 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
+		222A18212010C95F00065115 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		222A18232010CA0400065115 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
 		22634857200D29CE00650BFE /* RememberMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RememberMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2263485A200D29CE00650BFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2263485C200D29CE00650BFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +34,8 @@
 		22634861200D29CE00650BFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22634864200D29CE00650BFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22634866200D29CE00650BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A4C74AAA47AF919CFE44FF9 /* Pods-RememberMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe.release.xcconfig"; sourceTree = "<group>"; };
+		8D9C563C83F808055FCACFC8 /* Pods-RememberMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44727349905DEAC07F94DDB6 /* Pods_RememberMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +55,8 @@
 			children = (
 				22634859200D29CE00650BFE /* RememberMe */,
 				22634858200D29CE00650BFE /* Products */,
+				9F56B5458CE6357B9D5EB3D7 /* Pods */,
+				D2E68D38696ED49EA4300A75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +73,34 @@
 			children = (
 				2263485A200D29CE00650BFE /* AppDelegate.swift */,
 				2263485C200D29CE00650BFE /* ViewController.swift */,
+				222A181F2010C82200065115 /* Geotification.swift */,
+				222A18212010C95F00065115 /* Item.swift */,
+				222A18232010CA0400065115 /* ItemDB.swift */,
+				222A181B200E7AA200065115 /* RegionCell.swift */,
+				222A181D2010C4FC00065115 /* Utilities.swift */,
 				2263485E200D29CE00650BFE /* Main.storyboard */,
 				22634861200D29CE00650BFE /* Assets.xcassets */,
 				22634863200D29CE00650BFE /* LaunchScreen.storyboard */,
 				22634866200D29CE00650BFE /* Info.plist */,
 			);
 			path = RememberMe;
+			sourceTree = "<group>";
+		};
+		9F56B5458CE6357B9D5EB3D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C563C83F808055FCACFC8 /* Pods-RememberMe.debug.xcconfig */,
+				3A4C74AAA47AF919CFE44FF9 /* Pods-RememberMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D2E68D38696ED49EA4300A75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0002EF3147476C6F90DA682F /* Pods_RememberMe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22634869200D29CE00650BFE /* Build configuration list for PBXNativeTarget "RememberMe" */;
 			buildPhases = (
+				1FC95253E05D26FE2DB7999A /* [CP] Check Pods Manifest.lock */,
 				22634853200D29CE00650BFE /* Sources */,
 				22634854200D29CE00650BFE /* Frameworks */,
 				22634855200D29CE00650BFE /* Resources */,
+				1EAB9508C59E2EECB5798FF7 /* [CP] Embed Pods Frameworks */,
+				AC1C1DF948B41BD697741937 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,12 +173,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EAB9508C59E2EECB5798FF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1FC95253E05D26FE2DB7999A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RememberMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC1C1DF948B41BD697741937 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		22634853200D29CE00650BFE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2263485D200D29CE00650BFE /* ViewController.swift in Sources */,
+				222A18242010CA0400065115 /* ItemDB.swift in Sources */,
+				222A181C200E7AA200065115 /* RegionCell.swift in Sources */,
+				222A181E2010C4FC00065115 /* Utilities.swift in Sources */,
+				222A18202010C82200065115 /* Geotification.swift in Sources */,
+				222A18222010C95F00065115 /* Item.swift in Sources */,
 				2263485B200D29CE00650BFE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +373,7 @@
 		};
 		2263486A200D29CE00650BFE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D9C563C83F808055FCACFC8 /* Pods-RememberMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +389,7 @@
 		};
 		2263486B200D29CE00650BFE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A4C74AAA47AF919CFE44FF9 /* Pods-RememberMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
