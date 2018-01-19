@@ -10,6 +10,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
@@ -32,14 +37,54 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-ma-NTc" userLabel="Foreground View" customClass="RotatedView" customModule="FoldingCell">
-                                                    <rect key="frame" x="15" y="11" width="345" height="150"/>
+                                                    <rect key="frame" x="7" y="11" width="360" height="150"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baw-Dd-xyY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="150"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.88867044448852539" green="1" blue="0.0062111290171742439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CASA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-fC-eve">
+                                                            <rect key="frame" x="112" y="8" width="140" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Tb-uo-tKo">
+                                                            <rect key="frame" x="270" y="8" width="80" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="REMEMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erO-pF-5Hg">
+                                                            <rect key="frame" x="119" y="65" width="70" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmI-pl-qbT" userLabel="Icon 1">
+                                                            <rect key="frame" x="120" y="86" width="55" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-Vj-ixR" userLabel="Icon 2">
+                                                            <rect key="frame" x="200" y="86" width="55" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmh-ZL-ilR" userLabel="Icon 3">
+                                                            <rect key="frame" x="280" y="86" width="55" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="sKZ-rA-Fbb"/>
                                                     </constraints>
                                                 </view>
                                                 <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joP-Df-KZp" userLabel="Container View">
-                                                    <rect key="frame" x="15" y="161" width="345" height="450"/>
+                                                    <rect key="frame" x="7" y="161" width="360" height="450"/>
                                                     <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="450" id="nVW-59-yeG"/>
@@ -47,10 +92,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gc8-ma-NTc" firstAttribute="leading" secondItem="c7h-09-Onp" secondAttribute="leadingMargin" id="Mtp-kR-Lf2"/>
-                                                <constraint firstItem="joP-Df-KZp" firstAttribute="leading" secondItem="c7h-09-Onp" secondAttribute="leadingMargin" id="Utl-Ol-eH8"/>
-                                                <constraint firstItem="gc8-ma-NTc" firstAttribute="trailing" secondItem="c7h-09-Onp" secondAttribute="trailingMargin" id="ZGJ-pq-k6t"/>
-                                                <constraint firstItem="joP-Df-KZp" firstAttribute="trailing" secondItem="c7h-09-Onp" secondAttribute="trailingMargin" id="ohT-XM-NBg"/>
+                                                <constraint firstItem="gc8-ma-NTc" firstAttribute="leading" secondItem="c7h-09-Onp" secondAttribute="leadingMargin" constant="-8" id="Mtp-kR-Lf2"/>
+                                                <constraint firstItem="joP-Df-KZp" firstAttribute="leading" secondItem="c7h-09-Onp" secondAttribute="leadingMargin" constant="-8" id="Utl-Ol-eH8"/>
+                                                <constraint firstItem="gc8-ma-NTc" firstAttribute="trailing" secondItem="c7h-09-Onp" secondAttribute="trailingMargin" constant="7" id="ZGJ-pq-k6t"/>
+                                                <constraint firstItem="joP-Df-KZp" firstAttribute="trailing" secondItem="c7h-09-Onp" secondAttribute="trailingMargin" constant="7" id="ohT-XM-NBg"/>
                                                 <constraint firstItem="joP-Df-KZp" firstAttribute="top" secondItem="c7h-09-Onp" secondAttribute="topMargin" constant="150" identifier="ContainerViewTop" id="sAW-MB-jcz"/>
                                                 <constraint firstItem="gc8-ma-NTc" firstAttribute="top" secondItem="c7h-09-Onp" secondAttribute="topMargin" identifier="ForegroundViewTop" id="yk5-0w-9xa"/>
                                             </constraints>
@@ -131,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQs-6E-QFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853.60000000000002" y="900.89955022488766"/>
+            <point key="canvasLocation" x="868" y="1708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EEI-ck-rGJ">
@@ -139,6 +184,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="CDP-fu-pTt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ztc-vs-W6T">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
