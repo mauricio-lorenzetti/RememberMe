@@ -10,6 +10,7 @@ import UIKit
 import FoldingCell
 import MapKit
 import CoreLocation
+import UserNotifications
 
 fileprivate struct C {
     struct CellHeight {
@@ -19,6 +20,9 @@ fileprivate struct C {
 }
 
 class ViewController: UIViewController {
+    
+    let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
+    let nopt:UNAuthorizationOptions = [.sound, .alert]
     
     let reuseIdentifier = "cell"
     
@@ -36,7 +40,25 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         loadAllGeotifications()
+        
         cellHeights = (0..<geotifications.count).map { _ in C.CellHeight.close }
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 100
+        
+        nc.requestAuthorization(options: nopt) { (granted, e) in
+            print("autorizou? \(granted)")
+            if let e = e {
+                print(e.localizedDescription)
+            }
+        }
+        
+        geotifications.map {
+            let region = CLCircularRegion(center: $0.coordinate, radius: $0.radius, identifier: $0.identifier)
+            region.notifyOnExit = true
+            locationManager.startMonitoring(for: region)
+        }
     }
     
     private func loadAllGeotifications() {
