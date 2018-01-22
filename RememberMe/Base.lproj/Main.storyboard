@@ -19,7 +19,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--RememberMe-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RememberMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -150,9 +150,6 @@
                                                             <rect key="frame" x="288" y="278" width="46" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="Edit"/>
-                                                            <connections>
-                                                                <segue destination="cip-Ln-LFI" kind="show" id="yMX-XL-vYl"/>
-                                                            </connections>
                                                         </button>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e7n-NT-yii">
                                                             <rect key="frame" x="24" y="312" width="240" height="60"/>
@@ -224,7 +221,13 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="E1a-yp-Mok"/>
+                    <navigationItem key="navigationItem" title="RememberMe" id="E1a-yp-Mok">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Smb-8q-rJj">
+                            <connections>
+                                <segue destination="cip-Ln-LFI" kind="show" id="yIa-ha-vue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="q1w-0O-syW" id="dzL-et-yE8"/>
                     </connections>
@@ -233,7 +236,7 @@
             </objects>
             <point key="canvasLocation" x="1672.8" y="94.902548725637189"/>
         </scene>
-        <!--Item-->
+        <!--Itens Selection-->
         <scene sceneID="VZh-ZC-fyo">
             <objects>
                 <viewController id="cip-Ln-LFI" sceneMemberID="viewController">
@@ -252,14 +255,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVh-hJ-xCl">
-                                        <rect key="frame" x="282" y="39" width="70" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Region"/>
-                                        <connections>
-                                            <segue destination="9wd-uL-e14" kind="show" id="hte-Dp-C8T"/>
-                                        </connections>
-                                    </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLD-h7-z7l">
                                         <rect key="frame" x="30" y="39" width="240" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -329,12 +324,15 @@
                         <viewLayoutGuide key="safeArea" id="9ET-gW-vPe"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="XlP-Pu-Za7"/>
+                    <navigationItem key="navigationItem" title="Itens Selection" id="DCB-PG-GUi">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="ywi-GU-gEk"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQs-6E-QFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2616.8000000000002" y="94.902548725637189"/>
         </scene>
-        <!--View Controller-->
+        <!--Region-->
         <scene sceneID="Skn-HH-tQU">
             <objects>
                 <viewController id="9wd-uL-e14" sceneMemberID="viewController">
@@ -346,14 +344,72 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYX-Uq-SgU">
+                                <rect key="frame" x="7" y="72" width="360" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Itens to Remember" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-2Y-5uT">
+                                        <rect key="frame" x="30" y="8" width="231" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkK-JU-7tL">
+                                        <rect key="frame" x="282" y="39" width="70" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done"/>
+                                    </button>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VJA-0a-TG1">
+                                        <rect key="frame" x="30" y="39" width="240" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="25" id="C0J-G5-vod">
+                                            <size key="itemSize" width="65" height="65"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Bd-Wh-zQN">
+                                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="vlY-BD-fDo">
+                                                            <rect key="frame" x="2" y="0.0" width="60" height="60"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.88867044449999999" green="1" blue="0.0062111290169999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-5a-lmN">
+                                <rect key="frame" x="16" y="596" width="343" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5kD-jS-RnF">
+                                        <rect key="frame" x="-2" y="14" width="347" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" red="0.88867044448852539" green="1" blue="0.0062111290171742439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fax-Qv-Xh0"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Region" id="0gh-I0-uQN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="je4-qN-Yma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3413.5999999999999" y="94.902548725637189"/>
+            <point key="canvasLocation" x="2617" y="958"/>
         </scene>
         <!--Item-->
         <scene sceneID="PKw-nM-uaW">
