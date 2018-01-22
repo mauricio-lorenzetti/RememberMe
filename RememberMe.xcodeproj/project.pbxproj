@@ -17,6 +17,8 @@
 		22634860200D29CE00650BFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2263485E200D29CE00650BFE /* Main.storyboard */; };
 		22634862200D29CE00650BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22634861200D29CE00650BFE /* Assets.xcassets */; };
 		22634865200D29CE00650BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22634863200D29CE00650BFE /* LaunchScreen.storyboard */; };
+		22F287CA20165A96003CE300 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F287C920165A96003CE300 /* ItemsViewController.swift */; };
+		22F287CC201671D9003CE300 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F287CB201671D9003CE300 /* MapViewController.swift */; };
 		44727349905DEAC07F94DDB6 /* Pods_RememberMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0002EF3147476C6F90DA682F /* Pods_RememberMe.framework */; };
 		913E92F720125BE700406ABE /* libel-suit-rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 913E92F620125BE700406ABE /* libel-suit-rg.ttf */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		22634861200D29CE00650BFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22634864200D29CE00650BFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22634866200D29CE00650BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22F287C920165A96003CE300 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		22F287CB201671D9003CE300 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3A4C74AAA47AF919CFE44FF9 /* Pods-RememberMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe.release.xcconfig"; sourceTree = "<group>"; };
 		8D9C563C83F808055FCACFC8 /* Pods-RememberMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RememberMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe.debug.xcconfig"; sourceTree = "<group>"; };
 		913E92F620125BE700406ABE /* libel-suit-rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libel-suit-rg.ttf"; path = "libel-suit/libel-suit-rg.ttf"; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			children = (
 				2263485A200D29CE00650BFE /* AppDelegate.swift */,
 				2263485C200D29CE00650BFE /* ViewController.swift */,
+				22F287C920165A96003CE300 /* ItemsViewController.swift */,
+				22F287CB201671D9003CE300 /* MapViewController.swift */,
 				222A181F2010C82200065115 /* Geotification.swift */,
 				222A18212010C95F00065115 /* Item.swift */,
 				222A18232010CA0400065115 /* ItemDB.swift */,
@@ -195,12 +201,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RememberMe/Pods-RememberMe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/fluid-slider/fluid_slider.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fluid_slider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -253,7 +261,9 @@
 				222A18242010CA0400065115 /* ItemDB.swift in Sources */,
 				222A181C200E7AA200065115 /* RegionCell.swift in Sources */,
 				222A181E2010C4FC00065115 /* Utilities.swift in Sources */,
+				22F287CC201671D9003CE300 /* MapViewController.swift in Sources */,
 				222A18202010C82200065115 /* Geotification.swift in Sources */,
+				22F287CA20165A96003CE300 /* ItemsViewController.swift in Sources */,
 				222A18222010C95F00065115 /* Item.swift in Sources */,
 				2263485B200D29CE00650BFE /* AppDelegate.swift in Sources */,
 			);
