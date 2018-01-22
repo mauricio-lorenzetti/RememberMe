@@ -38,6 +38,10 @@
 	<array>
 		<string>libel-suit-rg.ttf</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>kkj</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>kkkj</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
