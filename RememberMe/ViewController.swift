@@ -8,6 +8,7 @@
 
 import UIKit
 import FoldingCell
+import fluid_slider
 import MapKit
 import CoreLocation
 import UserNotifications
@@ -35,6 +36,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let x = Slider()
         
         tableView.dataSource = self
         tableView.delegate = self
