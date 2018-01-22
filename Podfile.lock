@@ -2,17 +2,20 @@ PODS:
   - fluid-slider (0.0.6):
     - pop
   - FoldingCell (3.0.0)
+  - Hero (1.0.1)
   - pop (1.0.10)
 
 DEPENDENCIES:
   - fluid-slider
   - FoldingCell
+  - Hero
 
 SPEC CHECKSUMS:
   fluid-slider: 3aeb48bd7f875dc0431963fde12674e69c7c0ed2
   FoldingCell: 55e9fcac546acc2c8f110f210af892aa90032160
+  Hero: cee286821578e170d8c0c9c9cda7897357401112
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
 
-PODFILE CHECKSUM: 44381dc389d01bd1bab015394d538fd3ec22ad27
+PODFILE CHECKSUM: da4a6a81dd3c6289c1bd61b3cae40cafd64c993a
 
 COCOAPODS: 1.4.0

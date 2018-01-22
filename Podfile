@@ -8,5 +8,6 @@ target 'RememberMe' do
   # Pods for RememberMe
   pod 'FoldingCell'
   pod 'fluid-slider'
+  pod 'Hero'
 
 end

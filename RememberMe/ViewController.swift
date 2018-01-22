@@ -9,6 +9,7 @@
 import UIKit
 import FoldingCell
 import fluid_slider
+import Hero
 import MapKit
 import CoreLocation
 import UserNotifications
@@ -25,7 +26,8 @@ class ViewController: UIViewController {
     let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
     let nopt:UNAuthorizationOptions = [.sound, .alert]
     
-    let reuseIdentifier = "cell"
+    let reuseIdentifier = "geotification_cell"
+    let newRegionReuseIdentifier = "button_cell"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,19 +39,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let x = Slider()
-        
         tableView.dataSource = self
         tableView.delegate = self
         
         loadAllGeotifications()
         
-        cellHeights = (0..<geotifications.count).map { _ in C.CellHeight.close }
+        cellHeights = (0..<geotifications.count+1).map { _ in C.CellHeight.close }
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 100
         
+        //Notification
         nc.requestAuthorization(options: nopt) { (granted, e) in
             print("autorizou? \(granted)")
             if let e = e {
@@ -62,6 +63,21 @@ class ViewController: UIViewController {
             region.notifyOnExit = true
             locationManager.startMonitoring(for: region)
         }
+        
+        //Hero
+        
+    }
+    
+    @IBAction func newRegionTapped(_ sender: UIButton) {
+        
+        let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
+        
+        itemsVC.isHeroEnabled = true
+        
+        itemsVC.heroModalAnimationType = .zoomSlide(direction: .up)
+        
+        self.hero_replaceViewController(with: itemsVC)
+        
     }
     
     private func loadAllGeotifications() {
@@ -88,12 +104,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return geotifications.count
+        return geotifications.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.row >= geotifications.count ? newRegionReuseIdentifier : reuseIdentifier, for: indexPath)
         
         //TODO: preencher a celula
         
