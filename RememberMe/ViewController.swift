@@ -58,17 +58,26 @@ class ViewController: UIViewController {
             }
         }
         
+        let content = UNMutableNotificationContent()
+        content.title = "don't forget"
+        content.body = "your own shit"
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+        let request = UNNotificationRequest(identifier: "remember", content: content, trigger: trigger)
+        nc.add(request) { (e) in
+            if let err = e {
+                print(err.localizedDescription)
+            }
+        }
+        
         geotifications.map {
             let region = CLCircularRegion(center: $0.coordinate, radius: $0.radius, identifier: $0.identifier)
             region.notifyOnExit = true
             locationManager.startMonitoring(for: region)
         }
         
-        //Hero
-        
     }
     
-    @IBAction func newRegionTapped(_ sender: UIButton) {
+    @IBAction func newRemainderTapped(_ sender: UIButton) {
         
         let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
         
