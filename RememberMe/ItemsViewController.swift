@@ -14,6 +14,9 @@ class ItemsViewController: UIViewController {
     @IBOutlet weak var itemsCard: UIView!
     @IBOutlet weak var itemsGrid: UICollectionView!
     
+    @IBOutlet weak var selectedItemsCollectionView: UICollectionView!
+    
+    
     let itemCellReuseIdentifier = "itemCell"
     
     var selectedItems:[Item] = []

@@ -8,7 +8,7 @@
 
 import UIKit
 import FoldingCell
-import fluid_slider
+//import fluid_slider
 import Hero
 import MapKit
 import CoreLocation
@@ -120,7 +120,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.row >= geotifications.count ? newRegionReuseIdentifier : reuseIdentifier, for: indexPath)
         
-        //TODO: preencher a celula
+        //TODO: preencher a celula 
         
         return cell
     }

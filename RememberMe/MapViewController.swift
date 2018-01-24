@@ -69,7 +69,7 @@ extension MapViewController: MKMapViewDelegate {
         if overlay is MKCircle {
             let circleRenderer = MKCircleRenderer(overlay: overlay)
             circleRenderer.lineWidth = 1.0
-            circleRenderer.strokeColor = .purple
+            circleRenderer.strokeColor = .purple 
             circleRenderer.fillColor = UIColor.purple.withAlphaComponent(0.4)
             return circleRenderer
         }

@@ -361,6 +361,7 @@
                     <connections>
                         <outlet property="itemsCard" destination="mAo-dy-Tu9" id="wYs-4b-yDW"/>
                         <outlet property="itemsGrid" destination="5Qa-WP-h4h" id="pZ4-N1-9va"/>
+                        <outlet property="selectedItemsCollectionView" destination="eLD-h7-z7l" id="Wn0-kg-oYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQs-6E-QFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
