@@ -12,19 +12,26 @@ import Hero
 class ItemsViewController: UIViewController {
 
     @IBOutlet weak var itemsCard: UIView!
+    @IBOutlet weak var itemsGrid: UICollectionView!
+    
+    let itemCellReuseIdentifier = "itemCell"
+    
+    var selectedItems:[Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         isHeroEnabled = true
         
+        itemsGrid.delegate = self
+        itemsGrid.dataSource = self
+        
         itemsCard.heroID = "itemsCard"
         itemsCard.heroModifiers = [.cascade, .fade]
         
-        // Do any additional setup after loading the view.
     }
 
-    @IBAction func setRegionTapped(_ sender: UIButton) {
+    @IBAction func setRemainderTapped(_ sender: UIButton) {
         
         let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapVC") as! MapViewController
         
@@ -32,24 +39,39 @@ class ItemsViewController: UIViewController {
         
         mapVC.heroModalAnimationType = .zoomSlide(direction: .up)
         
+        mapVC.selectedItems = selectedItems
+        
         self.hero_replaceViewController(with: mapVC)
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return ItemsDB.allObjects.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        
+        cell.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedItems.append(ItemsDB.allObjects[indexPath.row])
+        print(selectedItems)
+        
+    }
+    
+}
+

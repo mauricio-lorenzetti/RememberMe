@@ -9,7 +9,7 @@
 import UIKit
 import FoldingCell
 
-class RegionCell: FoldingCell {
+class RemainderCell: FoldingCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
