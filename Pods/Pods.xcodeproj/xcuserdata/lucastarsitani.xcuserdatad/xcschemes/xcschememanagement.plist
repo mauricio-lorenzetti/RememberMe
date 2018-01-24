@@ -7,12 +7,17 @@
 		<key>FoldingCell.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
+		</dict>
+		<key>Hero.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-RememberMe.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>4</integer>
 		</dict>
 		<key>fluid-slider.xcscheme</key>
 		<dict>
@@ -22,7 +27,7 @@
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
 		</dict>
 	</dict>
 </dict>
