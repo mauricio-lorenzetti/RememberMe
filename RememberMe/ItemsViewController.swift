@@ -29,6 +29,9 @@ class ItemsViewController: UIViewController {
         itemsGrid.delegate = self
         itemsGrid.dataSource = self
         
+        selectedItemsCollectionView.delegate = self
+        selectedItemsCollectionView.dataSource = self
+        
         itemsCard.heroID = "itemsCard"
         itemsCard.heroModifiers = [.cascade, .fade]
         
@@ -57,22 +60,45 @@ class ItemsViewController: UIViewController {
 extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ItemsDB.allObjects.count
+        
+        if (self.itemsGrid == collectionView){
+            return ItemsDB.allObjects.count
+        } else if (self.selectedItemsCollectionView == collectionView){
+            return selectedItems.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        /* mesma célula, collections diferentes.
+        Itens para as collectons vêm de arrays diferentes.
+         Verfica qual é a collection e preenche corretamente */
         
-        cell.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
         
-        return cell
+        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        
+        cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
+        
+        let cellSelected = collectionView.dequeueReusableCell(withReuseIdentifier:  "selectedCell", for: indexPath) as! ItemCollectionViewCell
+        
+        cellSelected.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle!)
+        
+        if (self.selectedItemsCollectionView == collectionView){
+            return cellSelected
+        } else {
+            return cellGrid
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedItems.append(ItemsDB.allObjects[indexPath.row])
         print(selectedItems)
+        
+        self.selectedItemsCollectionView.reloadData()
         
     }
     
