@@ -12,6 +12,8 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
+    let itemCellReuseIdentifier = "itemCell"
+    
     var selectedItems: [Item]?
     var minimumRadius = 25.0
     var radius: Double = 100.0 {
@@ -25,13 +27,19 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var selectedItemsGrid: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.showsUserLocation = true
         mapView.delegate = self
         mapView.setUserTrackingMode(.follow, animated: true)
         mapView.zoomToUserLocation()
+        
+        selectedItemsGrid.delegate = self
+        selectedItemsGrid.dataSource = self
+        
         drawOverlayCircle()
     }
     
@@ -46,6 +54,9 @@ class MapViewController: UIViewController {
         VC.isHeroEnabled = true
         
         VC.heroModalAnimationType = .zoomSlide(direction: .down)
+        
+        //Saves new card
+        //VC.geotifications.append(Geotification(coordinate: <#T##CLLocationCoordinate2D#>, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
         
         self.hero_replaceViewController(with: VC)
         
@@ -80,4 +91,21 @@ extension MapViewController: MKMapViewDelegate {
         drawOverlayCircle()
     }
     
+}
+
+extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return (selectedItems?.count)!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        
+        cellGrid.itemImage.image = UIImage(named: selectedItems![indexPath.row].iconTitle!)
+        
+        return cellGrid
+            
+    }
 }

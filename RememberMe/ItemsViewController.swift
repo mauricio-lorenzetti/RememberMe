@@ -13,9 +13,7 @@ class ItemsViewController: UIViewController {
 
     @IBOutlet weak var itemsCard: UIView!
     @IBOutlet weak var itemsGrid: UICollectionView!
-    
-    @IBOutlet weak var selectedItemsCollectionView: UICollectionView!
-    
+    @IBOutlet weak var selectedItemsGrid: UICollectionView!
     
     let itemCellReuseIdentifier = "itemCell"
     
@@ -25,12 +23,6 @@ class ItemsViewController: UIViewController {
         super.viewDidLoad()
         
         isHeroEnabled = true
-        
-        itemsGrid.delegate = self
-        itemsGrid.dataSource = self
-        
-        selectedItemsCollectionView.delegate = self
-        selectedItemsCollectionView.dataSource = self
         
         itemsCard.heroID = "itemsCard"
         itemsCard.heroModifiers = [.cascade, .fade]
@@ -61,10 +53,13 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if (self.itemsGrid == collectionView){
+        switch collectionView {
+        case itemsGrid:
             return ItemsDB.allObjects.count
-        } else if (self.selectedItemsCollectionView == collectionView){
+        case selectedItemsGrid:
             return selectedItems.count
+        default:
+            fatalError()
         }
         
         return 0
@@ -72,33 +67,25 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        /* mesma célula, collections diferentes.
-        Itens para as collectons vêm de arrays diferentes.
-         Verfica qual é a collection e preenche corretamente */
-        
-        
         let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
         
-        cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
-        
-        let cellSelected = collectionView.dequeueReusableCell(withReuseIdentifier:  "selectedCell", for: indexPath) as! ItemCollectionViewCell
-        
-        cellSelected.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle!)
-        
-        if (self.selectedItemsCollectionView == collectionView){
-            return cellSelected
-        } else {
-            return cellGrid
+        switch collectionView {
+        case itemsGrid:
+            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
+        case selectedItemsGrid:
+            cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle!)
+        default:
+            fatalError()
         }
+        
+        return cellGrid
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedItems.append(ItemsDB.allObjects[indexPath.row])
-        print(selectedItems)
-        
-        self.selectedItemsCollectionView.reloadData()
+        selectedItemsGrid.reloadData()
         
     }
     

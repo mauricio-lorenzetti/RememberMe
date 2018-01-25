@@ -283,14 +283,14 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selectedCell" id="iyq-XP-fUb" customClass="ItemCollectionViewCell" customModule="RememberMe" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="iyq-XP-fUb" customClass="ItemCollectionViewCell" customModule="RememberMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="rL0-Bg-C5H">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rL0-Bg-C5H">
                                                             <rect key="frame" x="2" y="0.0" width="60" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -303,6 +303,7 @@
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="cip-Ln-LFI" id="byG-ym-bWF"/>
+                                            <outlet property="delegate" destination="cip-Ln-LFI" id="fq3-d7-dRD"/>
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdM-lB-lKF">
@@ -341,7 +342,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="KTe-Ph-NFH">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTe-Ph-NFH">
                                                             <rect key="frame" x="5" y="2" width="60" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -354,6 +355,7 @@
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="cip-Ln-LFI" id="PnM-O3-tF2"/>
+                                            <outlet property="delegate" destination="cip-Ln-LFI" id="UNf-Io-6co"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
@@ -370,7 +372,7 @@
                     <connections>
                         <outlet property="itemsCard" destination="mAo-dy-Tu9" id="wYs-4b-yDW"/>
                         <outlet property="itemsGrid" destination="5Qa-WP-h4h" id="pZ4-N1-9va"/>
-                        <outlet property="selectedItemsCollectionView" destination="eLD-h7-z7l" id="Wn0-kg-oYA"/>
+                        <outlet property="selectedItemsGrid" destination="eLD-h7-z7l" id="Wn0-kg-oYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQs-6E-QFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,19 +421,22 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Bd-Wh-zQN">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="0Bd-Wh-zQN" customClass="ItemCollectionViewCell" customModule="RememberMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="vlY-BD-fDo">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlY-BD-fDo">
                                                             <rect key="frame" x="2" y="0.0" width="60" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
+                                                <connections>
+                                                    <outlet property="itemImage" destination="vlY-BD-fDo" id="ecJ-UB-oGR"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -463,6 +468,7 @@
                     <connections>
                         <outlet property="mapView" destination="xrq-qq-56j" id="Ejg-76-2oj"/>
                         <outlet property="radiusSlider" destination="5kD-jS-RnF" id="kTP-T4-1Or"/>
+                        <outlet property="selectedItemsGrid" destination="VJA-0a-TG1" id="X2x-Mu-q5M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="je4-qN-Yma" userLabel="First Responder" sceneMemberID="firstResponder"/>
