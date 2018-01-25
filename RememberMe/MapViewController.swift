@@ -49,6 +49,9 @@ class MapViewController: UIViewController {
     
     @IBAction func doneRemainderTapped(_ sender: UIButton) {
         
+        let center = mapView.centerCoordinate
+        
+        
         let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VC") as! ViewController
         
         VC.isHeroEnabled = true
@@ -56,7 +59,8 @@ class MapViewController: UIViewController {
         VC.heroModalAnimationType = .zoomSlide(direction: .down)
         
         //Saves new card
-        //VC.geotifications.append(Geotification(coordinate: <#T##CLLocationCoordinate2D#>, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
+        VC.geotifications.append(Geotification(coordinate: center, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
+        print(center)
         
         self.hero_replaceViewController(with: VC)
         

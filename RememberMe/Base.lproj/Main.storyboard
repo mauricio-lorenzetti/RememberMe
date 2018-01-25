@@ -460,6 +460,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.88867044448852539" green="1" blue="0.0062111290171742439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderYG" translatesAutoresizingMaskIntoConstraints="NO" id="LtZ-y9-cub">
+                                <rect key="frame" x="175" y="317" width="24" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fax-Qv-Xh0"/>
@@ -473,11 +477,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="je4-qN-Yma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3172" y="95"/>
+            <point key="canvasLocation" x="3172" y="94.902548725637189"/>
         </scene>
     </scenes>
     <resources>
         <image name="Map-View" width="1271" height="747"/>
         <image name="cat" width="512" height="512"/>
+        <image name="placeholderYG" width="39" height="55"/>
     </resources>
 </document>
