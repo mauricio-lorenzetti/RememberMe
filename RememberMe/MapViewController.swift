@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import UserNotifications
 
 class MapViewController: UIViewController {
 
@@ -43,14 +44,9 @@ class MapViewController: UIViewController {
         drawOverlayCircle()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //register new geotification model
-    }
-    
     @IBAction func doneRemainderTapped(_ sender: UIButton) {
         
         let center = mapView.centerCoordinate
-        
         
         let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VC") as! ViewController
         
@@ -60,7 +56,29 @@ class MapViewController: UIViewController {
         
         //Saves new card
         VC.geotifications.append(Geotification(coordinate: center, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
-        print(center)
+        
+        //Register new location notification
+        let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
+        let nopt:UNAuthorizationOptions = [.sound, .alert]
+        
+        nc.requestAuthorization(options: nopt) { (granted, e) in
+            if let e = e {
+                print(e.localizedDescription)
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Hey!! Don't forget these things:"
+        content.body = ((selectedItems?.map{ String(describing: $0.iconTitle) })?.joined(separator: ", "))!
+        
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "RememberMe", content: content, trigger: trigger)
+        nc.add(request) { (e) in
+            if let err = e {
+                print(err.localizedDescription)
+            }
+        }
         
         self.hero_replaceViewController(with: VC)
         
@@ -107,7 +125,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
         
         let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
         
-        cellGrid.itemImage.image = UIImage(named: selectedItems![indexPath.row].iconTitle!)
+        cellGrid.itemImage.image = UIImage(named: selectedItems![indexPath.row].iconTitle)
         
         return cellGrid
             

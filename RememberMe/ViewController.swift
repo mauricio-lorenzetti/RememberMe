@@ -12,7 +12,6 @@ import FoldingCell
 import Hero
 import MapKit
 import CoreLocation
-import UserNotifications
 
 fileprivate struct C {
     struct CellHeight {
@@ -22,9 +21,6 @@ fileprivate struct C {
 }
 
 class ViewController: UIViewController {
-    
-    let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
-    let nopt:UNAuthorizationOptions = [.sound, .alert]
     
     let reuseIdentifier = "geotification_cell"
     let newRegionReuseIdentifier = "button_cell"
@@ -46,34 +42,9 @@ class ViewController: UIViewController {
         
         cellHeights = (0..<geotifications.count+1).map { _ in C.CellHeight.close }
         
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 100
-        
-        //Notification
-        nc.requestAuthorization(options: nopt) { (granted, e) in
-            print("autorizou? \(granted)")
-            if let e = e {
-                print(e.localizedDescription)
-            }
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "don't forget"
-        content.body = "your own shit"
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
-        let request = UNNotificationRequest(identifier: "remember", content: content, trigger: trigger)
-        nc.add(request) { (e) in
-            if let err = e {
-                print(err.localizedDescription)
-            }
-        }
-        
-        geotifications.map {
-            let region = CLCircularRegion(center: $0.coordinate, radius: $0.radius, identifier: $0.identifier)
-            region.notifyOnExit = true
-            locationManager.startMonitoring(for: region)
-        }
         
     }
     

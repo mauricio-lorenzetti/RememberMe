@@ -15,7 +15,7 @@ struct ItemKey {
 
 class Item: NSObject, NSCoding {
     
-    var iconTitle: String?
+    var iconTitle: String
     
     init(iconTitle: String) {
         self.iconTitle = iconTitle

@@ -71,9 +71,9 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         switch collectionView {
         case itemsGrid:
-            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle!)
+            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle)
         case selectedItemsGrid:
-            cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle!)
+            cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle)
         default:
             fatalError()
         }
