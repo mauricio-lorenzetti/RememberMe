@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleEvent(forRegion region: CLRegion) {
         print(region.identifier)
+        
+        //Register new location notification
+        let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "Hey!! Don't forget these things:"
+        // Puxar isso do UserDefaults
+        //content.body = ((selectedItems?.map{ String(describing: $0.iconTitle) })?.joined(separator: ", "))!
+        content.body = "Your very own shit... -.-"
+        let request = UNNotificationRequest(identifier: "RememberMe", content: content, trigger: nil)
+        nc.add(request) { (e) in
+            if let err = e {
+                print(err.localizedDescription)
+            }
+        }
+        
     }
 
 }

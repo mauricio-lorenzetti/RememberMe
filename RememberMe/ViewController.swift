@@ -12,6 +12,7 @@ import FoldingCell
 import Hero
 import MapKit
 import CoreLocation
+import UserNotifications
 
 fileprivate struct C {
     struct CellHeight {
@@ -45,6 +46,20 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 100
+        
+        let nc = UNUserNotificationCenter.current()
+        let nopt:UNAuthorizationOptions = [.sound, .alert]
+        nc.requestAuthorization(options: nopt) { (granted, e) in
+            if let e = e {
+                print(e.localizedDescription)
+            }
+        }
+        
+        geotifications.map {
+            let region = CLCircularRegion(center: $0.coordinate, radius: $0.radius, identifier: $0.identifier)
+            region.notifyOnExit = true
+            locationManager.startMonitoring(for: region)
+        }
         
     }
     
