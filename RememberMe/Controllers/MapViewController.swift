@@ -12,8 +12,6 @@ import CoreLocation
 import UserNotifications
 
 class MapViewController: UIViewController {
-
-    let itemCellReuseIdentifier = "itemCell"
     
     var selectedItems: [Item]?
     var minimumRadius = 25.0
@@ -52,8 +50,10 @@ class MapViewController: UIViewController {
         VC.heroModalAnimationType = .zoomSlide(direction: .down)
         
         //Saves new card
+        VC.geotifications = loadAllGeotifications()
         let center = mapView.centerCoordinate
         VC.geotifications.append(Geotification(coordinate: center, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
+        saveAllGeotifications(geotifications: VC.geotifications)
         
         self.hero_replaceViewController(with: VC)
         
@@ -98,7 +98,9 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        collectionView.register(UINib(nibName:"ItemCVCell", bundle: nil), forCellWithReuseIdentifier: PreferencesKeys.itemCellIdentifier)
+        
+        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: PreferencesKeys.itemCellIdentifier, for: indexPath) as! ItemCollectionViewCell
         
         cellGrid.itemImage.image = UIImage(named: selectedItems![indexPath.row].iconTitle)
         

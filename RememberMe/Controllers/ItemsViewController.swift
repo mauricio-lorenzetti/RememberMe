@@ -15,8 +15,6 @@ class ItemsViewController: UIViewController {
     @IBOutlet weak var itemsGrid: UICollectionView!
     @IBOutlet weak var selectedItemsGrid: UICollectionView!
     
-    let itemCellReuseIdentifier = "itemCell"
-    
     var selectedItems:[Item] = []
     
     override func viewDidLoad() {
@@ -67,7 +65,9 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellReuseIdentifier, for: indexPath) as! ItemCollectionViewCell
+        collectionView.register(UINib(nibName:"ItemCVCell", bundle: nil), forCellWithReuseIdentifier: PreferencesKeys.itemCellIdentifier)
+        
+        let cellGrid = collectionView.dequeueReusableCell(withReuseIdentifier: PreferencesKeys.itemCellIdentifier, for: indexPath) as! ItemCollectionViewCell
         
         switch collectionView {
         case itemsGrid:

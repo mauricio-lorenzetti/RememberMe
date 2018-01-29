@@ -10,6 +10,41 @@ import Foundation
 import UIKit
 import MapKit
 
+struct PreferencesKeys {
+    static let savedItems = "savedItems"
+    static let itemCellIdentifier = "itemCell"
+}
+
+func loadAllGeotifications() -> [Geotification] {
+    var geotifications:[Geotification] = []
+    guard let savedItems = UserDefaults.standard.array(forKey: PreferencesKeys.savedItems) else { return [] }
+    for savedItem in savedItems {
+        guard let geotification = NSKeyedUnarchiver.unarchiveObject(with: savedItem as! Data) as? Geotification else { continue }
+        geotifications.append(geotification)
+    }
+    return geotifications
+}
+
+func saveAllGeotifications(geotifications:[Geotification]) {
+    var items: [Data] = []
+    for geotification in geotifications {
+        let item = NSKeyedArchiver.archivedData(withRootObject: geotification)
+        items.append(item)
+    }
+    UserDefaults.standard.set(items, forKey: PreferencesKeys.savedItems)
+}
+
+func createDefaultGeotification() -> Geotification {
+    let locationManager = CLLocationManager()
+    return Geotification(
+        coordinate: (locationManager.location?.coordinate)!,
+        radius: 100.0,
+        identifier: "default",
+        note: "default",
+        eventType: .onExit,
+        items: [Item(iconTitle: "Cat"),Item(iconTitle: "Dog")])
+}
+
 // MARK: Helper Extensions
 extension UIViewController {
     func showAlert(withTitle title: String?, message: String?) {

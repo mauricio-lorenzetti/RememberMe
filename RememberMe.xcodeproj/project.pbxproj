@@ -17,6 +17,7 @@
 		22634860200D29CE00650BFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2263485E200D29CE00650BFE /* Main.storyboard */; };
 		22634862200D29CE00650BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22634861200D29CE00650BFE /* Assets.xcassets */; };
 		22634865200D29CE00650BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22634863200D29CE00650BFE /* LaunchScreen.storyboard */; };
+		229BB1A9201E24F600CE590C /* ItemCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229BB1A8201E24F600CE590C /* ItemCVCell.xib */; };
 		22F287CA20165A96003CE300 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F287C920165A96003CE300 /* ItemsViewController.swift */; };
 		22F287CC201671D9003CE300 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F287CB201671D9003CE300 /* MapViewController.swift */; };
 		22F287CE2017CCDC003CE300 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F287CD2017CCDC003CE300 /* ItemCollectionViewCell.swift */; };
@@ -38,6 +39,7 @@
 		22634861200D29CE00650BFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22634864200D29CE00650BFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22634866200D29CE00650BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229BB1A8201E24F600CE590C /* ItemCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCVCell.xib; sourceTree = "<group>"; };
 		22F287C920165A96003CE300 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		22F287CB201671D9003CE300 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		22F287CD2017CCDC003CE300 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -80,22 +82,47 @@
 			isa = PBXGroup;
 			children = (
 				2263485A200D29CE00650BFE /* AppDelegate.swift */,
-				2263485C200D29CE00650BFE /* ViewController.swift */,
-				22F287C920165A96003CE300 /* ItemsViewController.swift */,
-				22F287CB201671D9003CE300 /* MapViewController.swift */,
-				222A181F2010C82200065115 /* Geotification.swift */,
-				222A18212010C95F00065115 /* Item.swift */,
+				229BB1AC201E26BE00CE590C /* View */,
+				229BB1AB201E26B300CE590C /* Controllers */,
+				229BB1AA201E26A500CE590C /* Model */,
 				222A18232010CA0400065115 /* ItemDB.swift */,
-				222A181B200E7AA200065115 /* RemainderCell.swift */,
-				22F287CD2017CCDC003CE300 /* ItemCollectionViewCell.swift */,
 				222A181D2010C4FC00065115 /* Utilities.swift */,
-				2263485E200D29CE00650BFE /* Main.storyboard */,
 				22634861200D29CE00650BFE /* Assets.xcassets */,
-				22634863200D29CE00650BFE /* LaunchScreen.storyboard */,
 				22634866200D29CE00650BFE /* Info.plist */,
 				913E92F520125BD700406ABE /* Fonts */,
 			);
 			path = RememberMe;
+			sourceTree = "<group>";
+		};
+		229BB1AA201E26A500CE590C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				222A181F2010C82200065115 /* Geotification.swift */,
+				222A18212010C95F00065115 /* Item.swift */,
+				222A181B200E7AA200065115 /* RemainderCell.swift */,
+				22F287CD2017CCDC003CE300 /* ItemCollectionViewCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		229BB1AB201E26B300CE590C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2263485C200D29CE00650BFE /* ViewController.swift */,
+				22F287C920165A96003CE300 /* ItemsViewController.swift */,
+				22F287CB201671D9003CE300 /* MapViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		229BB1AC201E26BE00CE590C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				229BB1A8201E24F600CE590C /* ItemCVCell.xib */,
+				2263485E200D29CE00650BFE /* Main.storyboard */,
+				22634863200D29CE00650BFE /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		913E92F520125BD700406ABE /* Fonts */ = {
@@ -190,6 +217,7 @@
 				22634865200D29CE00650BFE /* LaunchScreen.storyboard in Resources */,
 				22634862200D29CE00650BFE /* Assets.xcassets in Resources */,
 				22634860200D29CE00650BFE /* Main.storyboard in Resources */,
+				229BB1A9201E24F600CE590C /* ItemCVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

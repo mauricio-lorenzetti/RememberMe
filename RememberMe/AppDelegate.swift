@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = "Hey!! Don't forget these things:"
-        // Puxar isso do UserDefaults
+        
         //content.body = ((selectedItems?.map{ String(describing: $0.iconTitle) })?.joined(separator: ", "))!
         content.body = "Your very own shit... -.-"
         let request = UNNotificationRequest(identifier: "RememberMe", content: content, trigger: nil)

@@ -23,8 +23,8 @@ fileprivate struct C {
 
 class ViewController: UIViewController {
     
-    let reuseIdentifier = "geotification_cell"
-    let newRegionReuseIdentifier = "button_cell"
+    let cardReuseIdentifier = "geotification_cell"
+    let newGeotificationReuseIdentifier = "button_cell"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,16 +36,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        geotifications = loadAllGeotifications()
         
-        loadAllGeotifications()
-        
-        cellHeights = (0..<geotifications.count+1).map { _ in C.CellHeight.close }
+        cellHeights = (0..<geotifications.count + 1).map { _ in C.CellHeight.close }
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        locationManager.distanceFilter = 100
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 10
         
         let nc = UNUserNotificationCenter.current()
         let nopt:UNAuthorizationOptions = [.sound, .alert]
@@ -55,12 +53,6 @@ class ViewController: UIViewController {
             }
         }
         
-        geotifications.map {
-            let region = CLCircularRegion(center: $0.coordinate, radius: $0.radius, identifier: $0.identifier)
-            region.notifyOnExit = true
-            locationManager.startMonitoring(for: region)
-        }
-        
     }
     
     @IBAction func newRemainderTapped(_ sender: UIButton) {
@@ -68,30 +60,9 @@ class ViewController: UIViewController {
         let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
         
         itemsVC.isHeroEnabled = true
-        
         itemsVC.heroModalAnimationType = .zoomSlide(direction: .up)
-        
         self.hero_replaceViewController(with: itemsVC)
         
-    }
-    
-    private func loadAllGeotifications() {
-        geotifications = []
-        geotifications.append(createDefaultGeotification())
-    }
-    
-    private func createDefaultGeotification() -> Geotification {
-        return Geotification(
-            coordinate: CLLocationCoordinate2D.init(latitude: -22.812749, longitude: -47.065614),
-            radius: 100.0,
-            identifier: "#0",
-            note: "default",
-            eventType: .onExit,
-            items: [Item.init(iconTitle: "cat")])
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
 }
@@ -104,11 +75,28 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: indexPath.row >= geotifications.count ? newRegionReuseIdentifier : reuseIdentifier, for: indexPath)
-        
-        //TODO: preencher a celula 
-        
-        return cell
+        if indexPath.row < geotifications.count {
+            
+            let g = geotifications[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: cardReuseIdentifier, for: indexPath) as! RemainderCell
+            
+            //cell collection views
+            cell.items = g.items
+            
+            cell.itemsCollectionView.dataSource = cell
+            cell.itemsCollectionView.reloadData()
+            
+            cell.openItemsCollectionView.dataSource = cell
+            cell.openItemsCollectionView.reloadData()
+            
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: newGeotificationReuseIdentifier, for: indexPath)
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
