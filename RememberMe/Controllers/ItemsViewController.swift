@@ -27,6 +27,18 @@ class ItemsViewController: UIViewController {
         
     }
 
+    @IBAction func cancelTapped(_ sender: Any) {
+        
+        let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VC") as! ViewController
+        
+        VC.isHeroEnabled = true
+        
+        VC.heroModalAnimationType = .zoomSlide(direction: .down)
+        
+        self.hero_replaceViewController(with: VC)
+        
+    }
+    
     @IBAction func setRemainderTapped(_ sender: UIButton) {
         
         let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapVC") as! MapViewController
@@ -84,7 +96,19 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedItems.append(ItemsDB.allObjects[indexPath.row])
+        
+        let testItem:((Item) -> Bool) = { (item) -> Bool in
+            return item.iconTitle == ItemsDB.allObjects[indexPath.row].iconTitle
+        }
+        
+        if selectedItems.contains(where: testItem ) {
+            if let index = selectedItems.index(where:testItem) {
+                selectedItems.remove(at: index)
+            }
+        } else {
+            selectedItems.append(ItemsDB.allObjects[indexPath.row])
+        }
+        
         selectedItemsGrid.reloadData()
         
     }

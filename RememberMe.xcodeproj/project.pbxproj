@@ -32,6 +32,7 @@
 		222A181F2010C82200065115 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		222A18212010C95F00065115 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		222A18232010CA0400065115 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
+		22438808201FE85A00C21F7E /* path_oculta.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = path_oculta.gpx; sourceTree = "<group>"; };
 		22634857200D29CE00650BFE /* RememberMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RememberMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2263485A200D29CE00650BFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2263485C200D29CE00650BFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 				229BB1AA201E26A500CE590C /* Model */,
 				222A18232010CA0400065115 /* ItemDB.swift */,
 				222A181D2010C4FC00065115 /* Utilities.swift */,
+				22438808201FE85A00C21F7E /* path_oculta.gpx */,
 				22634861200D29CE00650BFE /* Assets.xcassets */,
 				22634866200D29CE00650BFE /* Info.plist */,
 				913E92F520125BD700406ABE /* Fonts */,

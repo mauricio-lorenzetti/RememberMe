@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         cellHeights = (0..<geotifications.count + 1).map { _ in C.CellHeight.close }
         
         locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
@@ -90,12 +91,66 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.openItemsCollectionView.dataSource = cell
             cell.openItemsCollectionView.reloadData()
             
+            //generating map snapshot
+            let mapSnapshotOptions = MKMapSnapshotOptions()
+            
+            // Set the region of the map that is rendered.
+            let region = MKCoordinateRegionMakeWithDistance(g.coordinate, 360, 191)
+            mapSnapshotOptions.region = region
+            
+            // Set the scale of the image. We'll just use the scale of the current device, which is 2x scale on Retina screens.
+            mapSnapshotOptions.scale = UIScreen.main.scale
+            
+            // Set the size of the image output.
+            mapSnapshotOptions.size = CGSize(width: 360, height: 191)
+            
+            // Show buildings and Points of Interest on the snapshot
+            mapSnapshotOptions.showsBuildings = true
+            mapSnapshotOptions.showsPointsOfInterest = true
+            
+            let snapShotter = MKMapSnapshotter(options: mapSnapshotOptions)
+            
+            snapShotter.start(completionHandler: { (snapshot, error) in
+                
+                let image = (snapshot?.image)!
+                let center = snapshot?.point(for: g.coordinate)
+                
+                UIGraphicsBeginImageContext(image.size)
+                image.draw(at: .zero)
+                let context = UIGraphicsGetCurrentContext()
+                context?.setLineWidth(3.0)
+                context?.setFillColor(UIColor.purple.withAlphaComponent(0.3).cgColor)
+                context?.setStrokeColor(UIColor.purple.cgColor)
+                context?.addArc(center: center!, radius: CGFloat(g.radius), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
+                context?.strokePath()
+                context?.addArc(center: center!, radius: CGFloat(g.radius), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
+                context?.fillPath()
+                let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                cell.locationImageView.image = finalImage
+            })
+            
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: newGeotificationReuseIdentifier, for: indexPath)
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let g = geotifications[indexPath.row]
+            locationManager.stopMonitoring(for:
+                CLCircularRegion(
+                    center: g.coordinate,
+                    radius: g.radius,
+                    identifier: String(describing: g.identifier)))
+            geotifications.remove(at: indexPath.row)
+            saveAllGeotifications(geotifications: geotifications)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     

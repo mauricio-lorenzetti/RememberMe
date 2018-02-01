@@ -29,7 +29,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
-    var identifier: String
+    var identifier: Int
     var note: String
     var eventType: EventType
     var items: [Item] = []
@@ -46,7 +46,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
         return "Radius: \(radiusString)m"
     }
     
-    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String, eventType: EventType, items: [Item]) {
+    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: Int, note: String, eventType: EventType, items: [Item]) {
         self.coordinate = coordinate
         self.radius = radius
         self.identifier = identifier
@@ -61,7 +61,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
         let longitude = decoder.decodeDouble(forKey: GeotificationKey.longitude)
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         radius = decoder.decodeDouble(forKey: GeotificationKey.radius)
-        identifier = decoder.decodeObject(forKey: GeotificationKey.identifier) as! String
+        identifier = decoder.decodeInteger(forKey: GeotificationKey.identifier)
         note = decoder.decodeObject(forKey: GeotificationKey.note) as! String
         eventType = EventType(rawValue: decoder.decodeObject(forKey: GeotificationKey.eventType) as! String)!
         items = (decoder.decodeObject(forKey: GeotificationKey.items) as! [Item])

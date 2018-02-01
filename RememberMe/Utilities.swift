@@ -39,7 +39,7 @@ func createDefaultGeotification() -> Geotification {
     return Geotification(
         coordinate: (locationManager.location?.coordinate)!,
         radius: 100.0,
-        identifier: "default",
+        identifier: -1,
         note: "default",
         eventType: .onExit,
         items: [Item(iconTitle: "Cat"),Item(iconTitle: "Dog")])
@@ -66,6 +66,17 @@ extension MKMapView {
         guard let coordinate = userLocation.location?.coordinate else { return }
         let region = MKCoordinateRegionMakeWithDistance(coordinate, radius, radius)
         setRegion(region, animated: true)
+    }
+}
+
+extension Array where Iterator.Element == Geotification {
+    func uniqueIdentifier() -> Int {
+        let identifiers = self.map { $0.identifier }
+        var uniqueIdentifier = 0
+        while identifiers.contains(uniqueIdentifier) {
+            uniqueIdentifier += 1
+        }
+        return uniqueIdentifier
     }
 }
 

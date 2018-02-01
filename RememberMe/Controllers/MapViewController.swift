@@ -13,6 +13,12 @@ import UserNotifications
 
 class MapViewController: UIViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var selectedItemsGrid: UICollectionView!
+    
+    let locationManager = CLLocationManager()
+    
     var selectedItems: [Item]?
     var minimumRadius = 25.0
     var radius: Double = 100.0 {
@@ -23,10 +29,6 @@ class MapViewController: UIViewController {
         }
     }
     var circleOverlay: MKCircle?
-    
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var radiusSlider: UISlider!
-    @IBOutlet weak var selectedItemsGrid: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,21 @@ class MapViewController: UIViewController {
         selectedItemsGrid.delegate = self
         selectedItemsGrid.dataSource = self
         
+        radiusSliderChanged(radiusSlider)
         drawOverlayCircle()
+    }
+    
+    @IBAction func backPressed(_ sender: Any) {
+        
+        let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
+        
+        itemsVC.isHeroEnabled = true
+        itemsVC.heroModalAnimationType = .zoomSlide(direction: .up)
+        
+        itemsVC.selectedItems = selectedItems!
+        
+        self.hero_replaceViewController(with: itemsVC)
+        
     }
     
     @IBAction func doneRemainderTapped(_ sender: UIButton) {
@@ -52,8 +68,22 @@ class MapViewController: UIViewController {
         //Saves new card
         VC.geotifications = loadAllGeotifications()
         let center = mapView.centerCoordinate
-        VC.geotifications.append(Geotification(coordinate: center, radius: radius, identifier: "id", note: "note", eventType: .onExit, items: selectedItems!))
+        let g = Geotification(coordinate: center,
+                              radius: radius,
+                              identifier: VC.geotifications.uniqueIdentifier(),
+                              note: "note",
+                              eventType: .onExit,
+                              items: selectedItems!)
+        VC.geotifications.append(g)
         saveAllGeotifications(geotifications: VC.geotifications)
+        
+        //Register notification for geotification
+        let region = CLCircularRegion(
+            center: g.coordinate,
+            radius: g.radius,
+            identifier: String(describing: g.identifier))
+        region.notifyOnExit = true
+        locationManager.startMonitoring(for: region)
         
         self.hero_replaceViewController(with: VC)
         

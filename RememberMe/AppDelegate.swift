@@ -22,16 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleEvent(forRegion region: CLRegion) {
+        
         print(region.identifier)
+        
+        let selectedItems = loadAllGeotifications().filter { String(describing: $0.identifier) == region.identifier }[0].items
         
         //Register new location notification
         let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = "Hey!! Don't forget these things:"
-        
-        //content.body = ((selectedItems?.map{ String(describing: $0.iconTitle) })?.joined(separator: ", "))!
-        content.body = "Your very own shit... -.-"
-        let request = UNNotificationRequest(identifier: "RememberMe", content: content, trigger: nil)
+        content.body = selectedItems.map{ String(describing: $0.iconTitle) }.joined(separator: ", ")
+        let request = UNNotificationRequest(identifier: region.identifier, content: content, trigger: nil)
         nc.add(request) { (e) in
             if let err = e {
                 print(err.localizedDescription)
