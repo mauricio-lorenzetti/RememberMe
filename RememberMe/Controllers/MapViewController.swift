@@ -30,14 +30,13 @@ class MapViewController: UIViewController {
         }
     }
     var circleOverlay: MKCircle?
+    var zoomed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.showsUserLocation = true
         mapView.delegate = self
-        mapView.setUserTrackingMode(.follow, animated: true)
-        mapView.zoomToUserLocation()
+        mapView.showsUserLocation = true
         
         selectedItemsGrid.delegate = self
         selectedItemsGrid.dataSource = self
@@ -51,8 +50,8 @@ class MapViewController: UIViewController {
             let string = formatter.string(from: self.radius as NSNumber) ?? ""
             return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
         }
-        radiusSlider.setMaximumLabelAttributedText(NSAttributedString(string: "125", attributes: sliderTextAttributes))
-        radiusSlider.setMinimumLabelAttributedText(NSAttributedString(string: "25", attributes: sliderTextAttributes))
+        radiusSlider.setMaximumLabelAttributedText(NSAttributedString(string: "125m", attributes: sliderTextAttributes))
+        radiusSlider.setMinimumLabelAttributedText(NSAttributedString(string: "25m", attributes: sliderTextAttributes))
         radiusSlider.fraction = 0.5
         radiusSlider.shadowOffset = CGSize(width: 0, height: 10)
         radiusSlider.shadowBlur = 5
@@ -134,6 +133,13 @@ extension MapViewController: MKMapViewDelegate {
             return circleRenderer
         }
         return MKOverlayRenderer(overlay: overlay)
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        if !zoomed {
+            mapView.zoomToUserLocation(radius: 700.0)
+            zoomed = true
+        }
     }
     
     public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
