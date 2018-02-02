@@ -82,6 +82,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cardReuseIdentifier, for: indexPath) as! RemainderCell
             
+            //cell card design
+            cell.foregroundView.layer.cornerRadius = 10
+            cell.foregroundView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+            cell.foregroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.foregroundView.layer.shadowOpacity = 0.7
+            
             //cell collection views
             cell.items = g.items
             
