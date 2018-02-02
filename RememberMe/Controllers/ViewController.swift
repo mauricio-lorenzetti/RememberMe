@@ -88,6 +88,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.foregroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
             cell.foregroundView.layer.shadowOpacity = 0.7
             
+            cell.containerView.layer.cornerRadius = 10
+            cell.containerView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+            cell.containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.containerView.layer.shadowOpacity = 0.7
+            
+            
             //cell collection views
             cell.items = g.items
             
