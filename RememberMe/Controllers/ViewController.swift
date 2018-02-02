@@ -101,7 +101,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             let mapSnapshotOptions = MKMapSnapshotOptions()
             
             // Set the region of the map that is rendered.
-            let region = MKCoordinateRegionMakeWithDistance(g.coordinate, 360, 191)
+            let dY = g.radius*2
+            let dX = dY * (360/191)
+            let region = MKCoordinateRegionMakeWithDistance(g.coordinate, dX, dY)
             mapSnapshotOptions.region = region
             
             // Set the scale of the image. We'll just use the scale of the current device, which is 2x scale on Retina screens.
@@ -120,6 +122,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 let image = (snapshot?.image)!
                 let center = snapshot?.point(for: g.coordinate)
+                let border = snapshot?.point(for: CLLocationCoordinate2D(latitude: g.coordinate.latitude, longitude: g.coordinate.longitude + g.radius/111111)) //111,111m equivale a +/- 1 grau
+                let rad = self.distance(center!, border!)
                 
                 UIGraphicsBeginImageContext(image.size)
                 image.draw(at: .zero)
@@ -127,9 +131,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 context?.setLineWidth(3.0)
                 context?.setFillColor(UIColor.purple.withAlphaComponent(0.3).cgColor)
                 context?.setStrokeColor(UIColor.purple.cgColor)
-                context?.addArc(center: center!, radius: CGFloat(g.radius), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
+                context?.addArc(center: center!, radius: CGFloat(rad), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
                 context?.strokePath()
-                context?.addArc(center: center!, radius: CGFloat(g.radius), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
+                context?.addArc(center: center!, radius: CGFloat(rad), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
                 context?.fillPath()
                 let finalImage = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
@@ -145,6 +149,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
+    
+    private func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
+        let xDist = a.x - b.x
+        let yDist = a.y - b.y
+        return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
+    }
+
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
