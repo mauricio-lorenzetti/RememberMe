@@ -25,6 +25,11 @@ class ItemsViewController: UIViewController {
         itemsCard.heroID = "itemsCard"
         itemsCard.heroModifiers = [.cascade, .fade]
         
+        itemsCard.layer.cornerRadius = 10
+        itemsCard.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        itemsCard.layer.shadowOffset = CGSize(width: 0, height: 0)
+        itemsCard.layer.shadowOpacity = 0.7
+        
     }
 
     @IBAction func cancelTapped(_ sender: Any) {

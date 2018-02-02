@@ -14,6 +14,7 @@ import fluid_slider
 
 class MapViewController: UIViewController {
     
+    @IBOutlet weak var itemsCard: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var selectedItemsGrid: UICollectionView!
     @IBOutlet weak var radiusSlider: Slider!
@@ -33,6 +34,11 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        itemsCard.layer.cornerRadius = 10
+        itemsCard.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        itemsCard.layer.shadowOffset = CGSize(width: 0, height: 0)
+        itemsCard.layer.shadowOpacity = 0.7
         
         mapView.showsUserLocation = true
         mapView.delegate = self
