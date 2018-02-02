@@ -388,32 +388,30 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="itemsCard"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-5a-lmN">
-                                <rect key="frame" x="16" y="596" width="343" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5kD-jS-RnF">
-                                        <rect key="frame" x="-2" y="14" width="347" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <action selector="radiusSliderChanged:" destination="9wd-uL-e14" eventType="valueChanged" id="kYd-Ux-i8D"/>
-                                        </connections>
-                                    </slider>
-                                </subviews>
-                                <color key="backgroundColor" red="0.88867044448852539" green="1" blue="0.0062111290171742439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderYG" translatesAutoresizingMaskIntoConstraints="NO" id="LtZ-y9-cub">
                                 <rect key="frame" x="175" y="317" width="24" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-PK-Ugf" customClass="Slider" customModule="fluid_slider">
+                                <rect key="frame" x="16" y="595" width="343" height="52"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="lk7-Ia-SW3"/>
+                                    <constraint firstAttribute="height" constant="52" id="qQs-eq-UqH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mVU-PK-Ugf" firstAttribute="top" secondItem="fax-Qv-Xh0" secondAttribute="bottom" constant="-72" id="7Ae-Wa-Srr"/>
+                            <constraint firstItem="mVU-PK-Ugf" firstAttribute="leading" secondItem="fax-Qv-Xh0" secondAttribute="trailing" constant="-359" id="URx-1o-Crn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fax-Qv-Xh0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Region" id="0gh-I0-uQN"/>
                     <connections>
                         <outlet property="mapView" destination="xrq-qq-56j" id="Ejg-76-2oj"/>
-                        <outlet property="radiusSlider" destination="5kD-jS-RnF" id="kTP-T4-1Or"/>
+                        <outlet property="radiusSlider" destination="mVU-PK-Ugf" id="1ag-ZN-apd"/>
                         <outlet property="selectedItemsGrid" destination="VJA-0a-TG1" id="X2x-Mu-q5M"/>
                     </connections>
                 </viewController>

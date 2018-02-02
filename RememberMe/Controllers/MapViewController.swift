@@ -10,18 +10,19 @@ import UIKit
 import MapKit
 import CoreLocation
 import UserNotifications
+import fluid_slider
 
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var selectedItemsGrid: UICollectionView!
+    @IBOutlet weak var radiusSlider: Slider!
     
     let locationManager = CLLocationManager()
     
     var selectedItems: [Item]?
     var minimumRadius = 25.0
-    var radius: Double = 100.0 {
+    var radius: Double = 55.0 {
         willSet(changedValue) {
             if (abs(radius - changedValue) >= 1 ) {
                 drawOverlayCircle()
@@ -41,7 +42,28 @@ class MapViewController: UIViewController {
         selectedItemsGrid.delegate = self
         selectedItemsGrid.dataSource = self
         
-        radiusSliderChanged(radiusSlider)
+        let sliderTextAttributes: [NSAttributedStringKey : Any] = [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.white]
+        radiusSlider.attributedTextForFraction = { fraction in
+            let formatter = NumberFormatter()
+            formatter.maximumIntegerDigits = 3
+            formatter.minimumIntegerDigits = 3
+            formatter.maximumFractionDigits = 0
+            let string = formatter.string(from: self.radius as NSNumber) ?? ""
+            return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
+        }
+        radiusSlider.setMaximumLabelAttributedText(NSAttributedString(string: "125", attributes: sliderTextAttributes))
+        radiusSlider.setMinimumLabelAttributedText(NSAttributedString(string: "25", attributes: sliderTextAttributes))
+        radiusSlider.fraction = 0.5
+        radiusSlider.shadowOffset = CGSize(width: 0, height: 10)
+        radiusSlider.shadowBlur = 5
+        radiusSlider.shadowColor = UIColor(white: 0, alpha: 0.1)
+        //TODO: cores
+        radiusSlider.contentViewColor = UIColor(red: 78/255.0, green: 77/255.0, blue: 224/255.0, alpha: 1)
+        radiusSlider.valueViewColor = .white
+        
+        radiusSlider.addTarget(self, action: #selector(radiusSliderChanged), for: .valueChanged)
+        
+        radiusSliderChanged()
         drawOverlayCircle()
     }
     
@@ -89,8 +111,8 @@ class MapViewController: UIViewController {
         
     }
     
-    @IBAction func radiusSliderChanged(_ sender: UISlider) {
-        radius = Double(pow(5.0, radiusSlider.value))*minimumRadius //logaritmic scale
+    @objc func radiusSliderChanged() {
+        radius = Double(pow(5.0, radiusSlider.fraction))*minimumRadius //logaritmic scale
     }
     
     func drawOverlayCircle() {
