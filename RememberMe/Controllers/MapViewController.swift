@@ -103,8 +103,8 @@ class MapViewController: UIViewController {
                               items: selectedItems!)
         
         //Title prompt
-        let alertController = UIAlertController(title: "E mais uma coisa", message: "Dê um nome a essa região", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+        let alertController = UIAlertController(title: "E pra finalizar", message: "Dê um nome a essa região", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Criar", style: .default) { (_) in
             
             //getting the input values from user
             let title = alertController.textFields?[0].text
@@ -115,7 +115,7 @@ class MapViewController: UIViewController {
                 g.note = title!
             }
             
-            VC.geotifications.append(g)
+            VC.geotifications.insert(g, at: 0)
             saveAllGeotifications(geotifications: VC.geotifications)
         
             //Register notification for geotification

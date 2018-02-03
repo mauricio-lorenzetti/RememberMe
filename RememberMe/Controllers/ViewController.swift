@@ -16,7 +16,7 @@ import UserNotifications
 fileprivate struct C {
     struct CellHeight {
         static let close: CGFloat = 160.0 // equal or greater foregroundView height
-        static let open: CGFloat = 380.0 // equal or greater containerView height
+        static let open: CGFloat = 385.0 // equal or greater containerView height
     }
 }
 
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
         
         itemsVC.isHeroEnabled = true
-        itemsVC.heroModalAnimationType = .zoomSlide(direction: .up)
+        itemsVC.heroModalAnimationType = .fade
         self.hero_replaceViewController(with: itemsVC)
         
     }

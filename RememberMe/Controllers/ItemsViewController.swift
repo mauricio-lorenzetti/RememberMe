@@ -39,7 +39,7 @@ class ItemsViewController: UIViewController {
         
         VC.isHeroEnabled = true
         
-        VC.heroModalAnimationType = .zoomSlide(direction: .down)
+        VC.heroModalAnimationType = .fade
         
         self.hero_replaceViewController(with: VC)
         

@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Register new location notification
         let nc:UNUserNotificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
-        content.title = "Hey!! Don't forget these things:"
+        content.title = "Ei! Não esqueça suas coisas"
         content.body = selectedItems.map{ String(describing: $0.iconTitle) }.joined(separator: ", ")
         let request = UNNotificationRequest(identifier: region.identifier, content: content, trigger: nil)
         nc.add(request) { (e) in
