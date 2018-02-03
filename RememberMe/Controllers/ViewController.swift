@@ -8,7 +8,6 @@
 
 import UIKit
 import FoldingCell
-//import fluid_slider
 import Hero
 import MapKit
 import CoreLocation
@@ -17,7 +16,7 @@ import UserNotifications
 fileprivate struct C {
     struct CellHeight {
         static let close: CGFloat = 160.0 // equal or greater foregroundView height
-        static let open: CGFloat = 450.0 // equal or greater containerView height
+        static let open: CGFloat = 380.0 // equal or greater containerView height
     }
 }
 
@@ -83,15 +82,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: cardReuseIdentifier, for: indexPath) as! RemainderCell
             
             //cell card design
-            cell.foregroundView.layer.cornerRadius = 10
-            cell.foregroundView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-            cell.foregroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
-            cell.foregroundView.layer.shadowOpacity = 0.7
-            
-            cell.containerView.layer.cornerRadius = 10
-            cell.containerView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-            cell.containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-            cell.containerView.layer.shadowOpacity = 0.7
             
             
             //cell collection views
@@ -102,6 +92,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell.openItemsCollectionView.dataSource = cell
             cell.openItemsCollectionView.reloadData()
+            
+            cell.titleLabel.text = g.subtitle
+            cell.openColorLabelView.text = g.subtitle
             
             //generating map snapshot
             let mapSnapshotOptions = MKMapSnapshotOptions()
@@ -135,8 +128,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 image.draw(at: .zero)
                 let context = UIGraphicsGetCurrentContext()
                 context?.setLineWidth(3.0)
-                context?.setFillColor(UIColor.purple.withAlphaComponent(0.3).cgColor)
-                context?.setStrokeColor(UIColor.purple.cgColor)
+                context?.setFillColor(UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 0.4).cgColor)
+                context?.setStrokeColor(UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 1).cgColor)
                 context?.addArc(center: center!, radius: CGFloat(rad), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)
                 context?.strokePath()
                 context?.addArc(center: center!, radius: CGFloat(rad), startAngle: 0.0, endAngle: 2.0 * .pi, clockwise: false)

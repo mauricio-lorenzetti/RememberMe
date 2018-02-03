@@ -11,6 +11,7 @@ import Hero
 
 class ItemsViewController: UIViewController {
 
+    @IBOutlet weak var underView: UIView!
     @IBOutlet weak var itemsCard: UIView!
     @IBOutlet weak var itemsGrid: UICollectionView!
     @IBOutlet weak var selectedItemsGrid: UICollectionView!
@@ -88,9 +89,9 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         switch collectionView {
         case itemsGrid:
-            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle)
+            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle)?.withRenderingMode(.alwaysTemplate)
         case selectedItemsGrid:
-            cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle)
+            cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle)?.withRenderingMode(.alwaysTemplate)
         default:
             fatalError()
         }
@@ -106,14 +107,20 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return item.iconTitle == ItemsDB.allObjects[indexPath.row].iconTitle
         }
         
-        if selectedItems.contains(where: testItem ) {
-            if let index = selectedItems.index(where:testItem) {
-                selectedItems.remove(at: index)
+        if collectionView == itemsGrid {
+            let cell = itemsGrid.cellForItem(at: indexPath) as! ItemCollectionViewCell
+            
+            if selectedItems.contains(where: testItem ) {
+                cell.itemImage.tintColor = UIColor.black
+                if let index = selectedItems.index(where:testItem) {
+                    selectedItems.remove(at: index)
+                }
+            } else {
+                selectedItems.append(ItemsDB.allObjects[indexPath.row])
+                cell.itemImage.tintColor = UIColor.rememberGreen
             }
-        } else {
-            selectedItems.append(ItemsDB.allObjects[indexPath.row])
         }
-        
+            
         selectedItemsGrid.reloadData()
         
     }

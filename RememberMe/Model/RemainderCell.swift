@@ -14,16 +14,11 @@ class RemainderCell: FoldingCell {
     //Closed variables
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var ETALabel: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     
     //Expanded variables
     @IBOutlet weak var openColorView: UIView!
     @IBOutlet weak var openColorLabelView: UILabel!
-    @IBOutlet weak var openTitleLabel: UILabel!
-    @IBOutlet weak var openETALabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var editItemsButton: UIButton!
     @IBOutlet weak var openItemsCollectionView: UICollectionView!
     @IBOutlet weak var locationImageView: UIImageView!
     
@@ -31,6 +26,12 @@ class RemainderCell: FoldingCell {
     var items:[Item] = []
     
     override func awakeFromNib() {
+        foregroundView.layer.cornerRadius = 10
+        foregroundView.layer.masksToBounds = true
+        foregroundView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        foregroundView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        foregroundView.layer.shadowOpacity = 0.7
+        
         super.awakeFromNib()
         // Initialization code
     }

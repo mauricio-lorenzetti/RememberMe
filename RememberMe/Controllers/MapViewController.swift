@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
     var minimumRadius = 25.0
     var radius: Double = 55.0 {
         willSet(changedValue) {
-            if (abs(radius - changedValue) >= 1 ) {
+            if (abs(radius - changedValue) >= 0.1 ) {
                 drawOverlayCircle()
             }
         }
@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
         selectedItemsGrid.delegate = self
         selectedItemsGrid.dataSource = self
         
-        let sliderTextAttributes: [NSAttributedStringKey : Any] = [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.white]
+        let sliderTextAttributes: [NSAttributedStringKey : Any] = [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black]
         radiusSlider.attributedTextForFraction = { fraction in
             let formatter = NumberFormatter()
             formatter.maximumIntegerDigits = 3
@@ -63,7 +63,7 @@ class MapViewController: UIViewController {
         radiusSlider.shadowBlur = 5
         radiusSlider.shadowColor = UIColor(white: 0, alpha: 0.1)
         //TODO: cores
-        radiusSlider.contentViewColor = UIColor(red: 78/255.0, green: 77/255.0, blue: 224/255.0, alpha: 1)
+        radiusSlider.contentViewColor = UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 1)
         radiusSlider.valueViewColor = .white
         
         radiusSlider.addTarget(self, action: #selector(radiusSliderChanged), for: .valueChanged)
@@ -77,7 +77,7 @@ class MapViewController: UIViewController {
         let itemsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemsVC") as! ItemsViewController
         
         itemsVC.isHeroEnabled = true
-        itemsVC.heroModalAnimationType = .zoomSlide(direction: .up)
+        itemsVC.heroModalAnimationType = .fade
         
         itemsVC.selectedItems = selectedItems!
         
@@ -134,8 +134,8 @@ extension MapViewController: MKMapViewDelegate {
         if overlay is MKCircle {
             let circleRenderer = MKCircleRenderer(overlay: overlay)
             circleRenderer.lineWidth = 1.0
-            circleRenderer.strokeColor = .purple 
-            circleRenderer.fillColor = UIColor.purple.withAlphaComponent(0.4)
+            circleRenderer.strokeColor = UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 1)
+            circleRenderer.fillColor = UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 0.4)
             return circleRenderer
         }
         return MKOverlayRenderer(overlay: overlay)

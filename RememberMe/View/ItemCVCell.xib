@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,14 +14,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="h8T-dB-EgJ" customClass="ItemCollectionViewCell" customModule="RememberMe" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="80" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                <rect key="frame" x="0.0" y="0.0" width="80" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Yt-xn-MUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="9Yt-xn-MUJ" secondAttribute="height" multiplier="1:1" id="Zx5-oZ-5jk"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
@@ -28,7 +32,6 @@
                 <constraint firstItem="9Yt-xn-MUJ" firstAttribute="centerY" secondItem="lbS-7A-oXw" secondAttribute="centerY" id="8lQ-ST-7cq"/>
                 <constraint firstItem="9Yt-xn-MUJ" firstAttribute="height" secondItem="lbS-7A-oXw" secondAttribute="height" id="Hmd-1Z-3LM"/>
                 <constraint firstItem="9Yt-xn-MUJ" firstAttribute="centerX" secondItem="lbS-7A-oXw" secondAttribute="centerX" id="cwa-FS-umS"/>
-                <constraint firstItem="9Yt-xn-MUJ" firstAttribute="width" secondItem="lbS-7A-oXw" secondAttribute="width" id="rnW-t3-wzp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="lbS-7A-oXw"/>
             <size key="customSize" width="280" height="268"/>

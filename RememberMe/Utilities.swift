@@ -74,3 +74,7 @@ extension Array where Iterator.Element == Geotification {
     }
 }
 
+extension UIColor {
+    static let rememberGreen = UIColor(red: 227/255.0, green: 255/255.0, blue: 2/255.0, alpha: 1)
+}
+
