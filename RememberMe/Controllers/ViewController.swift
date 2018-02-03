@@ -93,8 +93,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.openItemsCollectionView.dataSource = cell
             cell.openItemsCollectionView.reloadData()
             
-            cell.titleLabel.text = g.subtitle
-            cell.openColorLabelView.text = g.subtitle
+            cell.titleLabel.text = g.note
+            cell.openColorLabelView.text = g.note
             
             //generating map snapshot
             let mapSnapshotOptions = MKMapSnapshotOptions()
@@ -155,6 +155,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
     }
 
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row < geotifications.count {
+            return .delete
+        }
+        return .none
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

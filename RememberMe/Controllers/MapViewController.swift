@@ -101,18 +101,38 @@ class MapViewController: UIViewController {
                               note: "note",
                               eventType: .onExit,
                               items: selectedItems!)
-        VC.geotifications.append(g)
-        saveAllGeotifications(geotifications: VC.geotifications)
         
-        //Register notification for geotification
-        let region = CLCircularRegion(
-            center: g.coordinate,
-            radius: g.radius,
-            identifier: String(describing: g.identifier))
-        region.notifyOnExit = true
-        locationManager.startMonitoring(for: region)
+        //Title prompt
+        let alertController = UIAlertController(title: "E mais uma coisa", message: "Dê um nome a essa região", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            
+            //getting the input values from user
+            let title = alertController.textFields?[0].text
+            
+            if (title?.isEmpty)! {
+                g.note = "eu sou um ze bostola"
+            } else {
+                g.note = title!
+            }
+            
+            VC.geotifications.append(g)
+            saveAllGeotifications(geotifications: VC.geotifications)
         
-        self.hero_replaceViewController(with: VC)
+            //Register notification for geotification
+            let region = CLCircularRegion(
+                center: g.coordinate,
+                radius: g.radius,
+                identifier: String(describing: g.identifier))
+            region.notifyOnExit = true
+            self.locationManager.startMonitoring(for: region)
+        
+            self.hero_replaceViewController(with: VC)
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Casa, Trabalho, Escola..."
+        }
+        alertController.addAction(confirmAction)
+        present(alertController, animated: true, completion: nil)
         
     }
     
