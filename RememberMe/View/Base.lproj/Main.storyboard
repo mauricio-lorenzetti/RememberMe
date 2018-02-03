@@ -32,7 +32,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.98413923594911001" blue="0.89105746238948269" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="geotification_cell" rowHeight="492" id="VvI-Ek-5Wz" customClass="RemainderCell" customModule="RememberMe" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="geotification_cell" rowHeight="492" id="VvI-Ek-5Wz" customClass="RemainderCell" customModule="RememberMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="492"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VvI-Ek-5Wz" id="c7h-09-Onp">
@@ -40,12 +40,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-ma-NTc" userLabel="Foreground View" customClass="RotatedView" customModule="FoldingCell">
-                                                    <rect key="frame" x="7" y="11" width="360" height="150"/>
+                                                    <rect key="frame" x="7" y="11" width="321" height="150"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baw-Dd-xyY" userLabel="ColorView">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baw-Dd-xyY" userLabel="ColorView">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="150"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.88867044448852539" green="1" blue="0.0062111290171742439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="63X-ID-bPx"/>
+                                                            </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="itemsCard"/>
                                                             </userDefinedRuntimeAttributes>
@@ -72,11 +74,14 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="baw-Dd-xyY" firstAttribute="height" secondItem="gc8-ma-NTc" secondAttribute="height" id="1bC-m2-tDU"/>
+                                                        <constraint firstItem="baw-Dd-xyY" firstAttribute="leading" secondItem="gc8-ma-NTc" secondAttribute="leading" id="ccw-dI-M2e"/>
+                                                        <constraint firstAttribute="bottom" secondItem="baw-Dd-xyY" secondAttribute="bottom" id="esm-UA-cKg"/>
                                                         <constraint firstAttribute="height" constant="150" id="sKZ-rA-Fbb"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joP-Df-KZp" userLabel="Container View">
-                                                    <rect key="frame" x="7" y="161" width="360" height="380"/>
+                                                    <rect key="frame" x="7" y="161" width="321" height="380"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUH-nf-qk6">
                                                             <rect key="frame" x="0.0" y="0.0" width="360" height="35"/>
@@ -143,6 +148,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="colorView" destination="baw-Dd-xyY" id="sAt-vm-hdR"/>
+                                            <outlet property="colorViewWidth" destination="63X-ID-bPx" id="3Rm-CG-ZhV"/>
                                             <outlet property="containerView" destination="joP-Df-KZp" id="FSM-pg-vBl"/>
                                             <outlet property="containerViewTop" destination="sAW-MB-jcz" id="bLw-iI-H0S"/>
                                             <outlet property="contentView" destination="c7h-09-Onp" id="uk4-E9-nq6"/>
@@ -156,7 +162,7 @@
                                             <outlet property="titleLabel" destination="tdX-fC-eve" id="FF7-68-c3P"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="button_cell" rowHeight="160" id="8IQ-Uw-AUS">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="button_cell" rowHeight="160" id="8IQ-Uw-AUS">
                                         <rect key="frame" x="0.0" y="520" width="375" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8IQ-Uw-AUS" id="Zoa-gt-RFm">

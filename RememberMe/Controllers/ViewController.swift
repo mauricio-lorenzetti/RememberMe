@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     
     var geotifications = [Geotification]()
     var cellHeights:[CGFloat]?
+    var mapView:MKMapView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,11 @@ class ViewController: UIViewController {
                 print(e.localizedDescription)
             }
         }
+        
+        mapView = MKMapView()
+        mapView?.delegate = self
+        mapView?.showsUserLocation = true
+        mapView?.setUserTrackingMode(.follow, animated: false)
         
     }
     
@@ -95,6 +101,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell.titleLabel.text = g.note
             cell.openColorLabelView.text = g.note
+            
+            if g.isActive {
+                cell.colorView.backgroundColor = .blue
+                cell.colorViewWidth.constant = 45.0
+                cell.openColorView.backgroundColor = .blue
+            } else {
+                cell.colorView.backgroundColor = .rememberGreen
+                cell.colorViewWidth.constant = 15.0
+                cell.openColorView.backgroundColor = .rememberGreen
+            }
             
             //generating map snapshot
             let mapSnapshotOptions = MKMapSnapshotOptions()
@@ -214,4 +230,22 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+extension ViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        
+        geotifications.map {
+            let distanceFrom = MKMetersBetweenMapPoints(MKMapPointForCoordinate($0.coordinate), MKMapPointForCoordinate(mapView.userLocation.coordinate))
+            
+            if  (distanceFrom <= $0.radius && $0.isActive == false) {
+                $0.isActive = true
+                tableView.reloadData()
+            } else if (distanceFrom > $0.radius && $0.isActive == true) {
+                $0.isActive = false
+                tableView.reloadData()
+            }
+        }
+    }
+    
+}
 

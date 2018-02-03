@@ -12,6 +12,7 @@ import FoldingCell
 class RemainderCell: FoldingCell {
     
     //Closed variables
+    @IBOutlet weak var colorViewWidth: NSLayoutConstraint!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
@@ -43,7 +44,7 @@ class RemainderCell: FoldingCell {
     
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         // durations count equal it itemCount
-        let durations = [0.33, 0.33, 0.33] // timing animation for each view
+        let durations = [0.55, 0.27] // timing animation for each view
         return durations[itemIndex]
     }
 

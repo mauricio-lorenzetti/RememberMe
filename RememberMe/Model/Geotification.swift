@@ -33,6 +33,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     var note: String
     var eventType: EventType
     var items: [Item] = []
+    var isActive = false
     
     var title: String? {
         if note.isEmpty {

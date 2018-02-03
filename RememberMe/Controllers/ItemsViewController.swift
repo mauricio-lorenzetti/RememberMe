@@ -17,6 +17,7 @@ class ItemsViewController: UIViewController {
     @IBOutlet weak var selectedItemsGrid: UICollectionView!
     
     var selectedItems:[Item] = []
+    var orderedItems:[Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,18 @@ class ItemsViewController: UIViewController {
         itemsCard.layer.shadowOffset = CGSize(width: 0, height: 0)
         itemsCard.layer.shadowOpacity = 0.7
         
+        orderedItems = order(array: ItemsDB.allObjects, by: "_frequencia")
+        
+    }
+    
+    private func order(array:[Item], by key:String) -> [Item] {
+        return array.sorted {
+            if UserDefaults.standard.integer(forKey: $0.iconTitle + key) >
+                UserDefaults.standard.integer(forKey: $1.iconTitle + key) {
+                return true
+            }
+            return false
+        }
     }
 
     @IBAction func cancelTapped(_ sender: Any) {
@@ -89,7 +102,7 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         switch collectionView {
         case itemsGrid:
-            cellGrid.itemImage.image = UIImage(named: ItemsDB.allObjects[indexPath.row].iconTitle)?.withRenderingMode(.alwaysTemplate)
+            cellGrid.itemImage.image = UIImage(named: orderedItems[indexPath.row].iconTitle)?.withRenderingMode(.alwaysTemplate)
         case selectedItemsGrid:
             cellGrid.itemImage.image = UIImage(named: selectedItems[indexPath.row].iconTitle)?.withRenderingMode(.alwaysTemplate)
         default:
@@ -102,22 +115,27 @@ extension ItemsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        let testItem:((Item) -> Bool) = { (item) -> Bool in
-            return item.iconTitle == ItemsDB.allObjects[indexPath.row].iconTitle
-        }
-        
         if collectionView == itemsGrid {
             let cell = itemsGrid.cellForItem(at: indexPath) as! ItemCollectionViewCell
+            let item = orderedItems[indexPath.row]
+            
+            let testItem:((Item) -> Bool) = {
+                return $0.iconTitle == item.iconTitle
+            }
             
             if selectedItems.contains(where: testItem ) {
                 cell.itemImage.tintColor = UIColor.black
+                let freq = UserDefaults.standard.integer(forKey: item.iconTitle + "_frequencia")
+                UserDefaults.standard.set(freq - 1, forKey: item.iconTitle + "_frequencia")
                 if let index = selectedItems.index(where:testItem) {
                     selectedItems.remove(at: index)
                 }
             } else {
-                selectedItems.append(ItemsDB.allObjects[indexPath.row])
                 cell.itemImage.tintColor = UIColor.rememberGreen
+                //itens mais usados
+                let freq = UserDefaults.standard.integer(forKey: item.iconTitle + "_frequencia")
+                UserDefaults.standard.set(freq + 1, forKey: item.iconTitle + "_frequencia")
+                selectedItems.append(item)
             }
         }
             
