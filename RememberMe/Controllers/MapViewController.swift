@@ -110,7 +110,7 @@ class MapViewController: UIViewController {
             let title = alertController.textFields?[0].text
             
             if (title?.isEmpty)! {
-                g.note = "eu sou um ze bostola"
+                g.note = "RememberMe"
             } else {
                 g.note = title!
             }
@@ -130,6 +130,7 @@ class MapViewController: UIViewController {
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "Casa, Trabalho, Escola..."
+            textField.autocapitalizationType = .sentences
         }
         alertController.addAction(confirmAction)
         present(alertController, animated: true, completion: nil)
