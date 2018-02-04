@@ -41,7 +41,6 @@ class ViewController: UIViewController {
         cellHeights = (0..<geotifications.count + 1).map { _ in C.CellHeight.close }
         
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
@@ -103,13 +102,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.openColorLabelView.text = g.note
             
             if g.isActive {
-                cell.colorView.backgroundColor = .blue
-                cell.colorViewWidth.constant = 45.0
-                cell.openColorView.backgroundColor = .blue
+                cell.colorViewWidth.constant = 35.0
             } else {
-                cell.colorView.backgroundColor = .rememberGreen
                 cell.colorViewWidth.constant = 15.0
-                cell.openColorView.backgroundColor = .rememberGreen
             }
             
             //generating map snapshot
@@ -244,6 +239,9 @@ extension ViewController: MKMapViewDelegate {
                 $0.isActive = false
                 tableView.reloadData()
             }
+        }
+        geotifications.sort { (a, b) -> Bool in
+            return a.isActive
         }
     }
     

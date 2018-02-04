@@ -22,6 +22,7 @@ func loadAllGeotifications() -> [Geotification] {
         guard let geotification = NSKeyedUnarchiver.unarchiveObject(with: savedItem as! Data) as? Geotification else { continue }
         geotifications.append(geotification)
     }
+    geotifications.sort { a,b in a.isActive }
     return geotifications
 }
 
