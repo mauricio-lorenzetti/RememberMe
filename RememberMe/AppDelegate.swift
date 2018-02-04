@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleEvent(forRegion region: CLRegion) {
         
-        print(region.identifier)
-        
         let selectedItems = loadAllGeotifications().filter { String(describing: $0.identifier) == region.identifier }[0].items
         
         //Register new location notification

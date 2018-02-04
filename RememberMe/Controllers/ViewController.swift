@@ -102,7 +102,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.openColorLabelView.text = g.note
             
             if g.isActive {
-                cell.colorViewWidth.constant = 35.0
+                cell.colorViewWidth.constant = 40.0
             } else {
                 cell.colorViewWidth.constant = 15.0
             }
@@ -229,7 +229,7 @@ extension ViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         
-        geotifications.map {
+        _ = geotifications.map {
             let distanceFrom = MKMetersBetweenMapPoints(MKMapPointForCoordinate($0.coordinate), MKMapPointForCoordinate(mapView.userLocation.coordinate))
             
             if  (distanceFrom <= $0.radius && $0.isActive == false) {

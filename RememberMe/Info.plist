@@ -39,9 +39,9 @@
 		<string>libel-suit-rg.ttf</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>kkj</string>
+	<string>$(PRODUCT_NAME) usa a localização do seu iPhone para te notificar assim que deixar a região demarcada</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>kkkj</string>
+	<string>$(PRODUCT_NAME) usa a localização do seu iPhone para te notificar assim que deixar a região demarcada</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
